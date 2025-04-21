@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                  // Современный JS
+    "module": "NodeNext",                  // Для ESM
+    "moduleResolution": "NodeNext",      // Нужно для работы с ESM + type: module
+    "esModuleInterop": true,             // Для совместимости с CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "dist",                    // Куда будет компилироваться (если нужно)
+    "baseUrl": ".",                      // Удобство для абсолютных импортов
+    "resolveJsonModule": true,           // Если работаешь с JSON
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
