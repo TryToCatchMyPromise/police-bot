@@ -197,8 +197,17 @@ const notifyAboutNewFine = async (fine: Fine) => {
   await bot.sendMessage(CHAT_ID, fine.protocolNumber);
 
   for (const imgPath of fine.images) {
-    await bot.sendPhoto(CHAT_ID, imgPath);
-    fs.unlinkSync(imgPath);
+    try {
+      await bot.sendPhoto(CHAT_ID, imgPath);
+    } catch (err) {
+      console.error("❌ Ошибка отправки изображения в Telegram:", err);
+    } finally {
+      try {
+        fs.unlinkSync(imgPath);
+      } catch (err) {
+        console.error("❌ Ошибка удаления временного файла:", err);
+      }
+    }
   }
 };
 
